@@ -20,8 +20,10 @@ function App() {
 
 	const SetConversionRate = async () => {
 		if (activeCurrency1 && activeCurrency2) {
+			console.log('Get1', activeCurrency1);
 			let tempConv = await GetConversionRate(activeCurrency1, activeCurrency2);
 			setConversionRate(tempConv);
+			return tempConv;
 		}
 		return;
 	};
@@ -31,17 +33,15 @@ function App() {
 	}, [activeCurrency1, activeCurrency2]);
 
 	const HandleCurrency1Change = async () => {
-		console.log('Called');
-		await SetConversionRate();
-		console.log('After');
+		let conv = await SetConversionRate();
 		setC1(activeCurrencyQuant1);
-		setC2(activeCurrencyQuant1 * conversionRate);
+		setC2(activeCurrencyQuant1 * conv);
 	};
 
 	const HandleCurrency2Change = async () => {
-		await SetConversionRate();
+		let conv = await SetConversionRate();
 		setC2(activeCurrencyQuant2);
-		setC1(activeCurrencyQuant2 / conversionRate);
+		setC1(activeCurrencyQuant2 / conv);
 	};
 
 	useEffect(() => {
@@ -60,42 +60,22 @@ function App() {
 				<h3 className='text-2xl mb-4'>Compare Currencies of Your Choice</h3>
 				<div className='flex flex-col space-y-4 xl:space-y-0 xl:flex-row items-center justify-around'>
 					<div className='flex flex-col'>
-						<CurrencySelectorDropdown
-							setActiveCurrency={setActiveCurrency1}
-							activeCurrency={activeCurrency1}
-						/>
+						<CurrencySelectorDropdown setActiveCurrency={setActiveCurrency1} />
 						<CurrencySwapQuantityInput
 							setActiveCurrencyQuant={setActiveCurrencyQuant1}
+							Val={c1}
 						/>
 					</div>
 					<IoMdSwap className='text-3xl rotate-90 xl:rotate-0' />
 					<div className='flex flex-col'>
-						<CurrencySelectorDropdown
-							setActiveCurrency={setActiveCurrency2}
-							activeCurrency={activeCurrency2}
-						/>
+						<CurrencySelectorDropdown setActiveCurrency={setActiveCurrency2} />
 						<CurrencySwapQuantityInput
 							setActiveCurrencyQuant={setActiveCurrencyQuant2}
+							Val={c2}
 						/>
 					</div>
 				</div>
-				<div className='w-full flex flex-col justify-center my-6 mb-4'>
-					<div>{c1 || 'NA'}</div>
-					<div>{c2 || 'NA'}</div>
-				</div>
 			</div>
-			{/* <div>
-				{CurrencyList.map((item, idx) => {
-					return (
-						<div className='flex space-x-2' key={idx}>
-							<div>{item.name}</div>
-							<div>{item.code}</div>
-							<div>{getEmojiByCurrencyCode(item.code) || 'NULL'}</div>
-							<div>{item.symbol}</div>
-						</div>
-					);
-				})}
-			</div> */}
 		</div>
 	);
 }

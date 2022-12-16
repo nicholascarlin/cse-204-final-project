@@ -3,7 +3,7 @@ import React from 'react';
 import { RxCaretDown } from 'react-icons/rx';
 import { getEmojiByCurrencyCode } from 'country-currency-emoji-flags';
 
-const CurrencySelectorDropdown = ({ setActiveCurrency, activeCurrency }) => {
+const CurrencySelectorDropdown = ({ setActiveCurrency }) => {
 	const HandleChange = (e) => {
 		let currencyObj = CurrencyList.find((currency) => {
 			return currency.code === e.target.value;
@@ -20,7 +20,7 @@ const CurrencySelectorDropdown = ({ setActiveCurrency, activeCurrency }) => {
 				className='focus:outline-none p-4 border pl-4 pr-12 appearance-none'>
 				{CurrencyList.map((item, idx) => {
 					return (
-						<option value={item.code}>
+						<option key={idx} value={item.code}>
 							{getEmojiByCurrencyCode(item.code)} {item.name}
 						</option>
 					);

@@ -1,11 +1,3 @@
-export const GetAllAvailableCurrencies = async () => {
-	fetch(
-		'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json'
-	).then((resp) => {
-		console.log('IN', resp);
-	});
-};
-
 export const GetConversionRate = async (currency1, currency2) => {
 	if (currency1 && currency2) {
 		const response = await fetch(
@@ -14,7 +6,6 @@ export const GetConversionRate = async (currency1, currency2) => {
 				.toLowerCase()}/${currency2.code.toString().toLowerCase()}.json`
 		);
 		const data = await response.json();
-
 		return data[currency2.code.toLowerCase()];
 	}
 };
