@@ -145,7 +145,7 @@ function App() {
 			</div>
 			{/* Content From: https://world101.cfr.org/global-era-issues/monetary-policy-and-currencies/understanding-currencies-and-exchange-rates */}
 			<div className='mt-24 px-8 py-1 w-2/3 mx-auto flex flex-col'>
-				<div className='flex flex-col items-center my-8'>
+				<div className='flex flex-col items-center my-8 text-center'>
 					<div className='font-light text-sm text-gray-500 mb-4'>
 						MONETARY POLICY AND CURRENCIES
 					</div>
@@ -258,6 +258,7 @@ function App() {
 					this led to the devaluation of the British pound sterling.
 				</p>
 			</div>
+			<div className='h-10 w-fuil bg-blue-500 mt-10'></div>
 		</div>
 	);
 }
