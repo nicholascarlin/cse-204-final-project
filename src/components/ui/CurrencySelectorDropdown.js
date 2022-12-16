@@ -5,7 +5,6 @@ import { getEmojiByCurrencyCode } from 'country-currency-emoji-flags';
 
 const CurrencySelectorDropdown = ({ setActiveCurrency, activeCurrency }) => {
 	const HandleChange = (e) => {
-		console.log('Changed', e.target.value);
 		let currencyObj = CurrencyList.find((currency) => {
 			return currency.code === e.target.value;
 		});

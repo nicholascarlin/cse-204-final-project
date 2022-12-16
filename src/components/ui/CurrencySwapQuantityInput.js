@@ -5,7 +5,6 @@ const CurrencySwapQuantityInput = ({ setActiveCurrencyQuant }) => {
 		<div className='mt-2'>
 			<input
 				onChange={(e) => {
-					console.log('H', e.target.value);
 					setActiveCurrencyQuant(e.target.value);
 				}}
 				type='number'

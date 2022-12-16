@@ -23,25 +23,25 @@ function App() {
 			let tempConv = await GetConversionRate(activeCurrency1, activeCurrency2);
 			setConversionRate(tempConv);
 		}
+		return;
 	};
 
 	useEffect(() => {
-		SetConversionRate();
+		HandleCurrency1Change();
 	}, [activeCurrency1, activeCurrency2]);
 
 	const HandleCurrency1Change = async () => {
-		SetConversionRate().then(() => {
-			console.log('IN THEN');
-			setC1(activeCurrencyQuant1);
-			setC2(activeCurrencyQuant1 * conversionRate);
-		});
+		console.log('Called');
+		await SetConversionRate();
+		console.log('After');
+		setC1(activeCurrencyQuant1);
+		setC2(activeCurrencyQuant1 * conversionRate);
 	};
 
 	const HandleCurrency2Change = async () => {
-		SetConversionRate().then(() => {
-			setC2(activeCurrencyQuant2);
-			setC1(activeCurrencyQuant2 / conversionRate);
-		});
+		await SetConversionRate();
+		setC2(activeCurrencyQuant2);
+		setC1(activeCurrencyQuant2 / conversionRate);
 	};
 
 	useEffect(() => {
