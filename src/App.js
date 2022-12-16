@@ -26,6 +26,12 @@ function App() {
 		return;
 	};
 
+	const SwapCurrencies = () => {
+		let tempCurrency = activeCurrency1;
+		setActiveCurrency1(activeCurrency2);
+		setActiveCurrency2(tempCurrency);
+	};
+
 	useEffect(() => {
 		HandleCurrency1Change();
 	}, [activeCurrency1, activeCurrency2]);
@@ -51,7 +57,7 @@ function App() {
 	}, [activeCurrencyQuant2]);
 
 	return (
-		<div className='w-screen h-screen p-8 min-w-[calc(700px)]'>
+		<div className='w-screen h-screen p-8 min-w-[calc(700px)] font-serif'>
 			<div className='w-full bg-blue-500 p-4 mb-16 rounded-xl shadow-xl'>
 				<h1 className='text-4xl font-semibold text-white'>
 					Currency Converter
@@ -66,15 +72,26 @@ function App() {
 				<h3 className='text-2xl mb-4'>Compare Currencies of Your Choice</h3>
 				<div className='flex flex-col space-y-4 xl:space-y-0 xl:flex-row items-center justify-around'>
 					<div className='flex flex-col'>
-						<CurrencySelectorDropdown setActiveCurrency={setActiveCurrency1} />
+						<CurrencySelectorDropdown
+							setActiveCurrency={setActiveCurrency1}
+							Val={activeCurrency1}
+						/>
 						<CurrencySwapQuantityInput
 							setActiveCurrencyQuant={setActiveCurrencyQuant1}
 							Val={c1}
 						/>
 					</div>
-					<IoMdSwap className='text-3xl rotate-90 xl:rotate-0' />
+					<IoMdSwap
+						onClick={() => {
+							SwapCurrencies();
+						}}
+						className='text-3xl rotate-90 xl:rotate-0'
+					/>
 					<div className='flex flex-col'>
-						<CurrencySelectorDropdown setActiveCurrency={setActiveCurrency2} />
+						<CurrencySelectorDropdown
+							setActiveCurrency={setActiveCurrency2}
+							Val={activeCurrency2}
+						/>
 						<CurrencySwapQuantityInput
 							setActiveCurrencyQuant={setActiveCurrencyQuant2}
 							Val={c2}
@@ -90,7 +107,7 @@ function App() {
 				<div className='w-2/3 flex flex-col space-y-2 xl:space-y-0 xl:flex-row items-center justify-evenly mx-auto mt-16'>
 					<CommonCurrency
 						CurrencyCode={'USD'}
-						CountryName={'United States'}
+						CountryName={'USA'}
 						C1={c1}
 						Currency1={activeCurrency1}
 					/>

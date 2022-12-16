@@ -1,9 +1,12 @@
+import React, { useEffect, useRef } from 'react';
+
 import { CurrencyList } from '../utils/CurrencyList';
-import React from 'react';
 import { RxCaretDown } from 'react-icons/rx';
 import { getEmojiByCurrencyCode } from 'country-currency-emoji-flags';
 
-const CurrencySelectorDropdown = ({ setActiveCurrency }) => {
+const CurrencySelectorDropdown = ({ setActiveCurrency, Val }) => {
+	const selectRef = useRef();
+
 	const HandleChange = (e) => {
 		let currencyObj = CurrencyList.find((currency) => {
 			return currency.code === e.target.value;
@@ -11,9 +14,16 @@ const CurrencySelectorDropdown = ({ setActiveCurrency }) => {
 		setActiveCurrency(currencyObj);
 	};
 
+	useEffect(() => {
+		console.log('In', selectRef.current.value);
+		console.log('Val', Val);
+		selectRef.current.value = Val.code;
+	}, [Val]);
+
 	return (
 		<div className='relative'>
 			<select
+				ref={selectRef}
 				onChange={(e) => {
 					HandleChange(e);
 				}}

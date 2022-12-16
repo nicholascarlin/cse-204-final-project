@@ -7,15 +7,12 @@ const CommonCurrency = ({ CurrencyCode, CountryName, C1, Currency1 }) => {
 	const [convRate, setConvRate] = useState(0);
 
 	useEffect(() => {
-		console.log('Called', Currency1);
 		HandleConvRate();
 	}, [Currency1]);
 
 	const HandleConvRate = async () => {
-		console.log('currency1', Currency1);
-		console.log('CC', CurrencyCode);
 		let tempConv = await GetCommonConversionRate(Currency1, CurrencyCode);
-		console.log('TCX', tempConv);
+
 		setConvRate(tempConv);
 	};
 
