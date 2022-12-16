@@ -78,6 +78,7 @@ function App() {
 						<CurrencySwapQuantityInput
 							setActiveCurrencyQuant={setActiveCurrencyQuant1}
 							Val={c1}
+							Symbol={activeCurrency1.symbol}
 						/>
 					</div>
 					<IoMdSwap
@@ -94,6 +95,7 @@ function App() {
 						<CurrencySwapQuantityInput
 							setActiveCurrencyQuant={setActiveCurrencyQuant2}
 							Val={c2}
+							Symbol={activeCurrency2.symbol}
 						/>
 					</div>
 				</div>
