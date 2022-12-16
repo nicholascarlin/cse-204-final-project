@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const CurrencySwapQuantityInput = ({ setActiveCurrencyQuant, Val }) => {
-	useEffect(() => {
-		console.log('Val Changed', Val);
-	}, [Val]);
-
 	return (
 		<div className='mt-2'>
 			<input

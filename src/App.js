@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 
+import CommonCurrency from './components/ui/CommonCurrency';
 import { CurrencyList } from './components/utils/CurrencyList';
 import CurrencySelectorDropdown from './components/ui/CurrencySelectorDropdown';
 import CurrencySwapQuantityInput from './components/ui/CurrencySwapQuantityInput';
 import { GetConversionRate } from './components/data/APICalls';
 import { IoMdSwap } from 'react-icons/io';
+import { getEmojiByCurrencyCode } from 'country-currency-emoji-flags';
 
 function App() {
 	const [activeCurrency1, setActiveCurrency1] = useState(CurrencyList[0]);
@@ -13,16 +15,12 @@ function App() {
 	const [activeCurrency2, setActiveCurrency2] = useState(CurrencyList[0]);
 	const [activeCurrencyQuant2, setActiveCurrencyQuant2] = useState(0);
 
-	const [conversionRate, setConversionRate] = useState(1);
-
 	const [c1, setC1] = useState(null);
 	const [c2, setC2] = useState(null);
 
 	const SetConversionRate = async () => {
 		if (activeCurrency1 && activeCurrency2) {
-			console.log('Get1', activeCurrency1);
 			let tempConv = await GetConversionRate(activeCurrency1, activeCurrency2);
-			setConversionRate(tempConv);
 			return tempConv;
 		}
 		return;
@@ -54,9 +52,17 @@ function App() {
 
 	return (
 		<div className='w-screen h-screen p-8 min-w-[calc(700px)]'>
-			<h1 className='text-4xl font-semibold pb-8'>Currency Hub</h1>
+			<div className='w-full bg-blue-500 p-4 mb-16 rounded-xl shadow-xl'>
+				<h1 className='text-4xl font-semibold text-white'>
+					Currency Converter
+				</h1>
+				<p className='mt-2 ml-1 text-gray-200 font-thin'>
+					Choose your selected currencies and get <strong>daily updated</strong>{' '}
+					conversion rates!
+				</p>
+			</div>
 
-			<div className='bg-white shadow-2xl border p-4 rounded-xl w-2/3 mx-auto'>
+			<div className='bg-white shadow-2xl border p-4 pb-6 rounded-xl w-2/3 mx-auto'>
 				<h3 className='text-2xl mb-4'>Compare Currencies of Your Choice</h3>
 				<div className='flex flex-col space-y-4 xl:space-y-0 xl:flex-row items-center justify-around'>
 					<div className='flex flex-col'>
@@ -74,6 +80,44 @@ function App() {
 							Val={c2}
 						/>
 					</div>
+				</div>
+			</div>
+
+			<hr className='mt-20' />
+
+			<div className='mt-8 p-8'>
+				<h2 className='text-3xl'>Common Conversions</h2>
+				<div className='w-2/3 flex flex-col space-y-2 xl:space-y-0 xl:flex-row items-center justify-evenly mx-auto mt-16'>
+					<CommonCurrency
+						CurrencyCode={'USD'}
+						CountryName={'United States'}
+						C1={c1}
+						Currency1={activeCurrency1}
+					/>
+					<CommonCurrency
+						CurrencyCode={'EUR'}
+						CountryName={'EU'}
+						C1={c1}
+						Currency1={activeCurrency1}
+					/>
+					<CommonCurrency
+						CurrencyCode={'GBP'}
+						CountryName={'UK'}
+						C1={c1}
+						Currency1={activeCurrency1}
+					/>
+					<CommonCurrency
+						CurrencyCode={'JPY'}
+						CountryName={'Japan '}
+						C1={c1}
+						Currency1={activeCurrency1}
+					/>
+					<CommonCurrency
+						CurrencyCode={'AUD'}
+						CountryName={'Australia'}
+						C1={c1}
+						Currency1={activeCurrency1}
+					/>
 				</div>
 			</div>
 		</div>
