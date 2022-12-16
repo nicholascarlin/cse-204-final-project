@@ -15,8 +15,6 @@ const CurrencySelectorDropdown = ({ setActiveCurrency, Val }) => {
 	};
 
 	useEffect(() => {
-		console.log('In', selectRef.current.value);
-		console.log('Val', Val);
 		selectRef.current.value = Val.code;
 	}, [Val]);
 

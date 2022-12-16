@@ -6,7 +6,6 @@ import CurrencySelectorDropdown from './components/ui/CurrencySelectorDropdown';
 import CurrencySwapQuantityInput from './components/ui/CurrencySwapQuantityInput';
 import { GetConversionRate } from './components/data/APICalls';
 import { IoMdSwap } from 'react-icons/io';
-import { getEmojiByCurrencyCode } from 'country-currency-emoji-flags';
 
 function App() {
 	const [activeCurrency1, setActiveCurrency1] = useState(CurrencyList[0]);
@@ -85,7 +84,7 @@ function App() {
 						onClick={() => {
 							SwapCurrencies();
 						}}
-						className='text-3xl rotate-90 xl:rotate-0'
+						className='text-3xl rotate-90 xl:rotate-0 cursor-pointer hover:text-4xl transition-all duration-300'
 					/>
 					<div className='flex flex-col'>
 						<CurrencySelectorDropdown
