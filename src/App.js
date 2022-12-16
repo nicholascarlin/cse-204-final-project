@@ -67,7 +67,7 @@ function App() {
 				</p>
 			</div>
 
-			<div className='bg-white shadow-2xl border p-4 pb-6 rounded-xl w-2/3 mx-auto'>
+			<div className='bg-white shadow-2xl border p-6 pb-8 rounded-xl w-2/3 mx-auto'>
 				<h3 className='text-2xl mb-4'>Compare Currencies of Your Choice</h3>
 				<div className='flex flex-col space-y-4 xl:space-y-0 xl:flex-row items-center justify-around'>
 					<div className='flex flex-col'>
@@ -84,7 +84,7 @@ function App() {
 						onClick={() => {
 							SwapCurrencies();
 						}}
-						className='text-3xl rotate-90 xl:rotate-0 cursor-pointer hover:text-4xl transition-all duration-300'
+						className='text-3xl rotate-90 xl:rotate-0 cursor-pointer hover:text-4xl transition-all duration-300 hover:text-blue-500'
 					/>
 					<div className='flex flex-col'>
 						<CurrencySelectorDropdown
