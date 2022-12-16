@@ -9,7 +9,7 @@ const CommonCurrency = ({ CurrencyCode, CountryName, C1, Currency1 }) => {
 	useEffect(() => {
 		console.log('Called', Currency1);
 		HandleConvRate();
-	}, Currency1);
+	}, [Currency1]);
 
 	const HandleConvRate = async () => {
 		console.log('currency1', Currency1);
